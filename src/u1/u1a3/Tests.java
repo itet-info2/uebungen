@@ -1,4 +1,4 @@
-package u1a3;
+package u1.u1a3;
 
 import org.junit.Test;
 import junit.framework.Assert;

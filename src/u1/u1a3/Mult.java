@@ -1,4 +1,4 @@
-package u1a3;
+package u1.u1a3;
 
 public class Mult {
     private static int f(int a, int b) {
