@@ -1,4 +1,4 @@
-package u0a2;
+package u0.u0a2;
 
 class Main {
     public static void main(String[] args) {

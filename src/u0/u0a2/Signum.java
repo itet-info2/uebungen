@@ -1,4 +1,4 @@
-package u0a2;
+package u0.u0a2;
 
 class Signum {
     static int signum(int x) {
