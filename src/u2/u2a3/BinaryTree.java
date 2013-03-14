@@ -1,4 +1,4 @@
-package u2.u2a3;
+package u2a3;
 
 public class BinaryTree {
 	private char[] tree;
@@ -13,7 +13,13 @@ public class BinaryTree {
 	 */
 	public static int father(int node)
 	{
-		return node;
+		if (node != 0)
+		{
+		if(node%2==0)
+			return (node-2)/2;
+		else 
+			return node/2; 
+		} else return 0;
 	}
 	
 	/**
@@ -24,7 +30,7 @@ public class BinaryTree {
 	 */
 	public static int leftChild(int node)
 	{
-		return node;
+		return 2*node+1;
 	}
 	
 	/**
@@ -35,7 +41,7 @@ public class BinaryTree {
 	 */
 	public static int rightChild(int node)
 	{
-		return node;
+		return 2*(node+1);
 	}
 	
 	/**
@@ -45,7 +51,16 @@ public class BinaryTree {
 	 * @throws IllegalArgumentException if check fails
 	 */
 	private static void checkTree(char[] array)
-	{
+	{		
+		if (array.length == 0)
+			throw new IllegalArgumentException();
+		else
+		{
+			for (int i = 1; i < array.length; i++){
+				if (array[i] != ' ' && array[father(i)] == ' ')
+					throw new IllegalArgumentException();
+	    	}
+		}
 	}
 	
 	/**
@@ -69,7 +84,24 @@ public class BinaryTree {
 	 * One line per node, depth-first. One space of indentation per depth.
 	 */
 	public String toString()
+	{ 
+		return this.nodeToString(0, 0);
+	}
+	
+	//Gibt den Knoten "node" aus, fährt anschliessend mit dem linken und rechten Teilbaum weiter
+	private String nodeToString(int node, int tiefe)
 	{
-		return null;
+	  String s = "";
+	  if (this.tree != null && node < this.tree.length && this.tree[node] != ' ')
+	  {
+		  //Tiefe ausgeben
+		  for (int i = 0; i < tiefe; i++)
+			  s += " ";
+		  //Wert ausgeben
+		  s += String.valueOf(this.tree[node]) + "\n";
+		  s += this.nodeToString(leftChild(node), tiefe + 1);
+		  s += this.nodeToString(rightChild(node), tiefe + 1);
+	  }
+	  return s;	  
 	}
 }

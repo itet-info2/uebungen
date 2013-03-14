@@ -1,4 +1,4 @@
-package u2.u2a3;
+package u2a3;
 
 import org.junit.Test;
 import org.junit.Assert;
@@ -58,6 +58,8 @@ public class Tests {
 
 	@Test public void rightList() { testCase("0 2   6       e", "0\n 2\n  6\n   e\n");	}
 
+	@Test public void generalTree() { testCase("ABCD FE", "A\n B\n  D\n C\n  F\n  E\n");        }
+
 	@Test(expected = IllegalArgumentException.class) 
 	public void emptyArray() { testCase("", "");}
 	
@@ -81,6 +83,9 @@ public class Tests {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void noLastLeaf() { failCase("01 34 6"); }
+
+	@Test(expected = IllegalArgumentException.class)
+	public void noFatherLeftLeftLeft() { failCase("0 23   7"); }
 
 	@Test public void noLastLeafOk() { failCase("0123456 "); }
 }

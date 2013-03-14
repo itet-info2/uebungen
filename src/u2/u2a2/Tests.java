@@ -1,4 +1,4 @@
-package u2.u2a2;
+package u2a2;
 
 import org.junit.Test;
 import org.junit.Assert;

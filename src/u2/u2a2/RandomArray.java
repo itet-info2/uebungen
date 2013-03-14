@@ -1,4 +1,6 @@
-package u2.u2a2;
+package u2a2;
+
+import java.util.Random;
 
 /**
  * An array with random values.
@@ -16,6 +18,12 @@ public class RandomArray {
      */
     public RandomArray(int length)
     {
+    	this.numbers = new int[length];
+    	Random random = new Random();
+    	for (int i=0; i<length; i++)
+    	{
+    		this.numbers[i]=random.nextInt(1000);
+    	}
     }
 
     /**
@@ -27,7 +35,14 @@ public class RandomArray {
      */
     public String toString()
     {
-		return null;
+    	String s = "[";
+    	for (int i=0; i<this.numbers.length; i++){    		
+    		s += this.numbers[i];
+    		if (i<this.numbers.length-1)
+    		    s += ", ";	
+    	}
+    	s += "]";
+    	return s;
     }
 
     /**
@@ -38,8 +53,28 @@ public class RandomArray {
      * are placed in the first <em>until</em> positions of the array and sorted in descending order.
      */
     private void recursiveSort(int until)
-    {
+    {    	
+    	if (until>0)
+    	{
+    		this.recursiveSort(until-1);
+    		int posMax = until-1;
+    		for (int i=until; i<this.numbers.length; i++)
+    		{
+    			if (this.numbers[posMax]<this.numbers[i])
+    			{
+    				posMax=i;
+    			}
+    		}
+    		if (until-1 != posMax)
+    		{
+    			int temp = this.numbers[until-1];
+    			this.numbers[until-1]=this.numbers[posMax];
+    			this.numbers[posMax]=temp;  			
+    		}
+    	}
+    
     }
+    	
 
     /**
      * sort the array in descending order in place.
